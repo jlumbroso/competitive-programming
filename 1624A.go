@@ -31,24 +31,17 @@ func main() {
 		var n int
 		fmt.Scan(&n)
 
-		// read the elements of the array
-		var arr []int
-
-		for j := 0; j < n; j++ {
+		// find the largest element in stream of input
+		var min, max int
+		for i := 0; i < n; i++ {
 			var x int
 			fmt.Scan(&x)
-			arr = append(arr, x)
 
-		}
-
-		// find the largest element in arr
-		var min, max int
-		for i, e := range arr {
-			if i == 0 || e < min {
-				min = e
+			if i == 0 || x < min {
+				min = x
 			}
-			if i == 0 || e > max {
-				max = e
+			if i == 0 || x > max {
+				max = x
 			}
 		}
 
