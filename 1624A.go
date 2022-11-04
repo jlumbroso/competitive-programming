@@ -18,34 +18,40 @@ input and puts them into three variables A, B and C. */
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func main() {
+
+	reader := bufio.NewReader(os.Stdin)
+	writer := bufio.NewWriter(os.Stdout)
+
+	defer writer.Flush()
+
 	var t int
-	fmt.Scan(&t)
+	fmt.Fscan(reader, &t)
 
 	// write a loop to read the test cases
 	for i := 0; i < t; i++ {
 		// read the number of elements
 		var n int
-		fmt.Scan(&n)
+		fmt.Fscan(reader, &n)
 
 		// find the largest element in stream of input
-		var min, max int
-		for i := 0; i < n; i++ {
-			var x int
-			fmt.Scan(&x)
+		var min, max int64
+		for j := 0; j < n; j++ {
+			var x int64
+			fmt.Fscan(reader, &x)
 
-			if i == 0 || x < min {
+			if j == 0 || x < min {
 				min = x
 			}
-			if i == 0 || x > max {
+			if j == 0 || x > max {
 				max = x
 			}
 		}
-
-		//fmt.Println(arr, min, max)
-		fmt.Println(max - min)
+		fmt.Fprintln(writer, max-min)
 	}
 }
