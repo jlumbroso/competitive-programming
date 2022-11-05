@@ -35,27 +35,24 @@ func main() {
 
 	// write a loop to read the test cases
 	for i := 0; i < t; i++ {
-		// read the length of the word
+		// read the number of elements
 		var n int
 		fmt.Fscan(reader, &n)
 
-		var prevBigram string
-		fmt.Fscan(reader, &prevBigram)
-		fmt.Fprintln(writer, "<(", prevBigram, ")>")
-
-		// find the largest element in stream of input
+		var arr []string
 		for j := 0; j < n-2; j++ {
 			var bigram string
 			fmt.Fscan(reader, &bigram)
-
-			// we found not consecutive bigrams so print full previous bigram
-			if prevBigram[1] != bigram[0] {
-				fmt.Fprintln(writer, prevBigram)
-			} else {
-				fmt.Fprintln(writer, string(prevBigram[0]))
-			}
-			prevBigram = bigram
+			arr = append(arr, bigram)
 		}
-		fmt.Fprintln(writer, "//", t)
+
+		for j := 1; j < n-2; j++ {
+			if arr[j][1] != arr[j-1][0] {
+				fmt.Fprint(writer, string(arr[j-1][0]))
+			} else {
+				fmt.Fprint(writer, string(arr[j-1]))
+			}
+		}
+		fmt.Fprintln(writer)
 	}
 }
